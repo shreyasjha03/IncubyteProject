@@ -2,6 +2,8 @@
 
 A full-stack TDD kata project for managing a sweet shop inventory and sales. Built with Node.js/Express backend and Next.js frontend, using MongoDB as the database.
 
+**GitHub Repository**: [https://github.com/shreyasjha03/IncubyteProject.git](https://github.com/shreyasjha03/IncubyteProject.git)
+
 ## Features
 
 - **User Authentication**: Register and login with JWT token-based authentication
@@ -108,6 +110,87 @@ npm run dev
 
 The frontend will be running on `http://localhost:3000`
 
+## Screenshots
+
+### Application Screenshots
+
+#### 1. Login Page
+Beautiful gradient background with form validation and password visibility toggle.
+
+![Login Page](docs/screenshots/login-page.png)
+
+#### 2. Dashboard
+Responsive grid layout showing all sweets with search and filter functionality.
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+#### 3. Shopping Cart
+Sliding panel with cart items, quantity controls, and checkout button.
+
+![Shopping Cart](docs/screenshots/shopping-cart.png)
+
+#### 4. Admin Panel
+Sweet management interface with image upload (computer or URL).
+
+![Admin Panel](docs/screenshots/admin-panel.png)
+
+#### 5. Order History
+Past orders displayed in sliding panel with order details.
+
+![Order History](docs/screenshots/order-history.png)
+
+#### 6. Order Panel
+Side panel showing order history with all past orders.
+
+![Order Panel](docs/screenshots/order-panel.png)
+
+#### 7. Checkout Page
+Order review page with customer information and order summary.
+
+![Checkout Page](docs/screenshots/checkout-page.png)
+
+#### 8. Order Process Flow
+Complete order flow showing the purchase process.
+
+![Order Process](docs/screenshots/order-process.png)
+
+#### 9. Order Placed
+Confirmation screen showing successful order placement.
+
+![Order Placed](docs/screenshots/order-placed.png)
+
+#### 10. Order Confirmation
+Final order confirmation page with order details.
+
+![Order Confirmation](docs/screenshots/order-confirmation.png)
+
+## Test Report
+
+See `TEST_REPORT.md` for detailed test results and coverage information.
+
+### Test Summary
+
+- **Test Suites**: 3 (auth, sweets, inventory)
+- **Total Tests**: 18
+- **Test Coverage**: 
+  - Statements: 50.64%
+  - Branches: 24.69%
+  - Functions: 39.28%
+  - Lines: 50.82%
+
+### Running Tests
+
+```bash
+cd backend
+npm test
+```
+
+For coverage report:
+```bash
+cd backend
+npm test -- --coverage
+```
+
 ## API Endpoints
 
 ### Authentication
@@ -132,6 +215,221 @@ All protected endpoints require the JWT token in the Authorization header:
 Authorization: Bearer <token>
 ```
 
+## API Testing & Database Access
+
+### 📊 Accessing the Database
+
+#### Using MongoDB Shell (`mongosh`)
+
+```bash
+# Connect to your database
+mongosh sweet-shop
+
+# Or with full connection string
+mongosh "mongodb://localhost:27017/sweet-shop"
+```
+
+**Useful MongoDB Commands:**
+
+```javascript
+// List all collections
+show collections
+
+// View all users
+db.users.find().pretty()
+
+// View all sweets
+db.sweets.find().pretty()
+
+// Count documents
+db.users.countDocuments()
+db.sweets.countDocuments()
+
+// Make a user admin
+db.users.updateOne(
+  { email: "user@example.com" },
+  { $set: { role: "admin" } }
+)
+
+// Verify admin role
+db.users.findOne({ email: "user@example.com" })
+
+// Add a test sweet directly to database
+db.sweets.insertOne({
+  name: "Chocolate Bar",
+  category: "Chocolate",
+  price: 5.99,
+  quantity: 10
+})
+
+// Delete all sweets (cleanup)
+db.sweets.deleteMany({})
+```
+
+#### Using MongoDB Compass (GUI)
+
+1. Download from: https://www.mongodb.com/products/compass
+2. Connect using: `mongodb://localhost:27017/sweet-shop`
+3. Browse collections visually
+
+### 🔐 Getting Authentication Token
+
+First, you need to login and get your JWT token.
+
+#### Option A: Via Browser (Easiest)
+1. Open `http://localhost:3000/login`
+2. Login with your credentials
+3. Open Browser DevTools (F12)
+4. Go to: Application → Cookies → `http://localhost:3000`
+5. Copy the `token` value
+
+#### Option B: Via API
+```bash
+# Login via API to get token
+curl -X POST http://localhost:5001/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "user@example.com", "password": "YOUR_PASSWORD"}'
+
+# Response will contain the token
+# Save it as TOKEN variable:
+export TOKEN="your-jwt-token-here"
+```
+
+### ✅ Testing API Endpoints
+
+#### Authentication Endpoints
+
+**1. POST /api/auth/register**
+```bash
+curl -X POST http://localhost:5001/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "testuser",
+    "email": "test@example.com",
+    "password": "password123"
+  }'
+```
+
+**2. POST /api/auth/login**
+```bash
+curl -X POST http://localhost:5001/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "password": "YOUR_PASSWORD"
+  }'
+```
+
+#### Sweets Endpoints (Protected - Need Token)
+
+**3. GET /api/sweets - List all sweets**
+```bash
+curl -X GET http://localhost:5001/api/sweets \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+**4. GET /api/sweets/search - Search sweets**
+```bash
+# Search by name
+curl -X GET "http://localhost:5001/api/sweets/search?name=chocolate" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Search by category
+curl -X GET "http://localhost:5001/api/sweets/search?category=Candy" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Search by price range
+curl -X GET "http://localhost:5001/api/sweets/search?minPrice=3&maxPrice=10" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Combined search
+curl -X GET "http://localhost:5001/api/sweets/search?name=chocolate&category=Candy&minPrice=1&maxPrice=20" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+**5. GET /api/sweets/:id - Get single sweet**
+```bash
+# First, get a sweet ID from listing all sweets
+curl -X GET http://localhost:5001/api/sweets \
+  -H "Authorization: Bearer $TOKEN"
+
+# Then use the _id to get details
+curl -X GET "http://localhost:5001/api/sweets/SWEET_ID_HERE" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+**6. POST /api/sweets - Add new sweet (Admin only)**
+```bash
+curl -X POST http://localhost:5001/api/sweets \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{
+    "name": "Gummy Bears",
+    "category": "Candy",
+    "price": 3.99,
+    "quantity": 50
+  }'
+```
+
+**7. PUT /api/sweets/:id - Update sweet (Admin only)**
+```bash
+curl -X PUT "http://localhost:5001/api/sweets/SWEET_ID_HERE" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{
+    "price": 4.99,
+    "quantity": 75
+  }'
+```
+
+**8. DELETE /api/sweets/:id - Delete sweet (Admin only)**
+```bash
+curl -X DELETE "http://localhost:5001/api/sweets/SWEET_ID_HERE" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+#### Inventory Endpoints (Protected)
+
+**9. POST /api/sweets/:id/purchase - Purchase a sweet**
+```bash
+# Purchase 1 unit (default)
+curl -X POST "http://localhost:5001/api/sweets/SWEET_ID_HERE/purchase" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"quantity": 1}'
+
+# Purchase multiple units
+curl -X POST "http://localhost:5001/api/sweets/SWEET_ID_HERE/purchase" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"quantity": 5}'
+```
+
+**10. POST /api/sweets/:id/restock - Restock sweet (Admin only)**
+```bash
+curl -X POST "http://localhost:5001/api/sweets/SWEET_ID_HERE/restock" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"quantity": 100}'
+```
+
+### 🔧 Make User Admin (Required for Admin Endpoints)
+
+Run this in MongoDB shell:
+```javascript
+db.users.updateOne(
+  { email: "user@example.com" },
+  { $set: { role: "admin" } }
+)
+```
+
+Or via command line:
+```bash
+mongosh sweet-shop --eval 'db.users.updateOne({email: "user@example.com"}, {$set: {role: "admin"}})'
+```
+
+After this, logout and login again from the frontend to refresh your token!
+
 ## Running Tests
 
 ### Backend Tests
@@ -151,9 +449,12 @@ This project follows the **Red-Green-Refactor** TDD cycle:
 See `TDD_GUIDE.md` for detailed TDD workflow and best practices.
 
 ### Test Coverage
-- Authentication endpoints: Full coverage
-- Sweet management: Full coverage
-- Inventory operations: Full coverage
+- Authentication endpoints: Tested ✅
+- Sweet management: Tested ✅
+- Inventory operations: Tested ✅
+
+### Test Report
+See `TEST_REPORT.md` for comprehensive test results and coverage details.
 
 Run tests with coverage:
 ```bash
@@ -193,14 +494,7 @@ Co-authored-by: Cursor AI <auto@cursor.com>
 
 This ensures transparency about AI tool usage in the development process.
 
-### Setting Up TDD Commit History
-
-To create a proper TDD commit history:
-```bash
-./setup-tdd-commits.sh
-```
-
-This script creates commits following the Red-Green-Refactor pattern with proper AI attribution.
+See `TDD_GUIDE.md` for detailed instructions on viewing the Red-Green-Refactor pattern in the commit history.
 
 ## Default Admin User
 

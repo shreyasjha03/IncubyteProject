@@ -34,30 +34,33 @@ app.get('/health', (req, res) => {
 });
 
 // Database connection
-mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sweet-shop')
-  .then(() => {
-    console.log('Connected to MongoDB');
-    const server = app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
+// Only start server if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+  mongoose
+    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sweet-shop')
+    .then(() => {
+      console.log('Connected to MongoDB');
+      const server = app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+      });
 
-    server.on('error', (error: any) => {
-      if (error.code === 'EADDRINUSE') {
-        console.error(`Port ${PORT} is already in use. Please:`);
-        console.error(`1. Kill the process using: lsof -ti:${PORT} | xargs kill -9`);
-        console.error(`2. Or change the PORT in your .env file`);
-        process.exit(1);
-      } else {
-        console.error('Server error:', error);
-        process.exit(1);
-      }
+      server.on('error', (error: any) => {
+        if (error.code === 'EADDRINUSE') {
+          console.error(`Port ${PORT} is already in use. Please:`);
+          console.error(`1. Kill the process using: lsof -ti:${PORT} | xargs kill -9`);
+          console.error(`2. Or change the PORT in your .env file`);
+          process.exit(1);
+        } else {
+          console.error('Server error:', error);
+          process.exit(1);
+        }
+      });
+    })
+    .catch((error) => {
+      console.error('MongoDB connection error:', error);
+      process.exit(1);
     });
-  })
-  .catch((error) => {
-    console.error('MongoDB connection error:', error);
-    process.exit(1);
-  });
+}
 
 export default app;
 

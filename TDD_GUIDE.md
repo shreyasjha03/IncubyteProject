@@ -147,3 +147,106 @@ npm test -- --watch
 - `backend/src/__tests__/sweets.test.ts` - Sweet management tests
 - `backend/src/__tests__/inventory.test.ts` - Inventory operation tests
 
+## Viewing Red-Green-Refactor Pattern in Commit History
+
+### 🌐 On GitHub (Easiest Way)
+
+1. **Go to your repository:**
+   https://github.com/shreyasjha03/IncubyteProject
+
+2. **Click on "commits" or view the commit history**
+
+3. **Look for these commit patterns:**
+
+#### Authentication TDD Cycle:
+- 🔴 **RED**: `test: Add authentication tests (RED)` - Commit `b26b23d`
+- 🟢 **GREEN**: `feat: Implement user authentication (GREEN)` - Commit `c2dce13`
+- 🔵 **REFACTOR**: `refactor: Improve authentication code structure` - Commit `4e438e4`
+
+#### Sweets Management TDD Cycle:
+- 🔴 **RED**: `test: Add sweets CRUD tests (RED)` - Commit `65ccbb5`
+- 🟢 **GREEN**: `feat: Implement sweets management endpoints (GREEN)` - Commit `1d3e10c`
+- 🔵 **REFACTOR**: `refactor: Improve sweets route organization` - Commit `d6b3359`
+
+#### Inventory Management TDD Cycle:
+- 🔴 **RED**: `test: Add inventory management tests (RED)` - Commit `4520f1b`
+- 🟢 **GREEN**: `feat: Implement inventory management (GREEN)` - Commit `8a91d51`
+- 🔵 **REFACTOR**: `refactor: Improve inventory operations` - Commit `4bddfb7`
+
+### 💻 Using Git Commands Locally
+
+#### View TDD Pattern Commits Only
+```bash
+cd /Users/shreyasjha/Desktop/IncubyteAssignment
+git log --oneline | grep -E "(RED|GREEN|refactor)"
+```
+
+#### View Detailed TDD Commits
+```bash
+git log --pretty=format:"%h - %s%n%b" | grep -A 5 -E "(RED|GREEN|refactor)" | head -40
+```
+
+#### View Graph with TDD Pattern
+```bash
+git log --oneline --graph -25
+```
+
+This shows:
+```
+* 4bddfb7 refactor: Improve inventory operations
+* 8a91d51 feat: Implement inventory management (GREEN)
+* 4520f1b test: Add inventory management tests (RED)
+* d6b3359 refactor: Improve sweets route organization
+* 1d3e10c feat: Implement sweets management endpoints (GREEN)
+* 65ccbb5 test: Add sweets CRUD tests (RED)
+* 4e438e4 refactor: Improve authentication code structure
+* c2dce13 feat: Implement user authentication (GREEN)
+* b26b23d test: Add authentication tests (RED)
+```
+
+#### View All Commits with Details
+```bash
+git log --oneline -25
+```
+
+### 📊 Visual TDD Pattern Summary
+
+The pattern repeats for each feature:
+
+1. **🔴 RED Phase**: Write failing test
+   - Commit message: `test: Add [feature] tests (RED)`
+   - Shows: Tests written before implementation
+
+2. **🟢 GREEN Phase**: Make test pass
+   - Commit message: `feat: Implement [feature] (GREEN)`
+   - Shows: Minimal implementation to pass tests
+
+3. **🔵 REFACTOR Phase**: Improve code
+   - Commit message: `refactor: Improve [feature] implementation`
+   - Shows: Code improvements without changing behavior
+
+### 🔍 Quick View Commands
+
+#### Count TDD Cycles
+```bash
+git log --oneline | grep -c "RED\|GREEN\|refactor"
+```
+
+#### See Authentication TDD Cycle
+```bash
+git log --oneline --all --grep="authentication" | head -5
+```
+
+#### View Commit Details with Co-Authors
+```bash
+git log --pretty=format:"%h - %s%n%b%n" | grep -A 2 "Co-authored"
+```
+
+### 📝 GitHub UI Tips
+
+On GitHub, you can:
+1. Click on any commit hash (e.g., `b26b23d`) to see full details
+2. View commit messages - they clearly show (RED), (GREEN), or refactor
+3. Check co-author attribution - every commit has "Co-authored-by: Cursor AI"
+4. Use the search/filter to find specific patterns
+
