@@ -33,6 +33,7 @@ export default function SweetCard({ sweet, onPurchase, isAdmin, onDelete, onUpda
     category: sweet.category,
     price: sweet.price.toString(),
     quantity: sweet.quantity.toString(),
+    imageUrl: sweet.imageUrl || '',
   });
 
   const handleAddToCart = () => {

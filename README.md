@@ -110,6 +110,37 @@ npm run dev
 
 The frontend will be running on `http://localhost:3000`
 
+## Deployment
+
+The project is fully deployed and accessible online:
+
+### Live URLs
+
+- **Frontend (Vercel)**: [https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app](https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app)
+- **Backend API (Railway)**: [https://backend-production-c6f9.up.railway.app](https://backend-production-c6f9.up.railway.app)
+- **Backend Health Check**: [https://backend-production-c6f9.up.railway.app/health](https://backend-production-c6f9.up.railway.app/health)
+
+### Deployment Platforms
+
+- **Frontend**: Deployed on [Vercel](https://vercel.com) - Next.js optimized hosting
+- **Backend**: Deployed on [Railway](https://railway.app) - Node.js server hosting
+- **Database**: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - Cloud database service
+
+### Access the Application
+
+1. **Visit the Frontend**: Open [https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app](https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app)
+2. **Register/Login**: Create an account or use existing credentials
+3. **Admin Access**: Use admin credentials to access admin panel and manage sweets
+
+### Admin Credentials
+
+For testing admin features, use:
+- **Email**: `shreyasjha16@gmail.com`
+- **Password**: `Raunak@955`
+- **Role**: `admin`
+
+> **Note**: These are demo credentials. Change the password in production.
+
 ## Screenshots
 
 ### Application Screenshots
@@ -510,6 +541,18 @@ To create an admin user, you can either:
 db.users.updateOne({ email: "admin@example.com" }, { $set: { role: "admin" } })
 ```
 
+3. **Or use the provided script** (for local development):
+```bash
+cd backend
+npm run create-admin
+```
+
+This script will create an admin user with:
+- **Username**: Shreyas
+- **Email**: shreyasjha16@gmail.com
+- **Password**: Raunak@955
+- **Role**: admin
+
 ## Usage
 
 1. **Register/Login**: Create an account or login with existing credentials
@@ -526,6 +569,11 @@ db.users.updateOne({ email: "admin@example.com" }, { $set: { role: "admin" } })
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Build for production
 - `npm start` - Start production server
+- `npm run create-admin` - Create admin user script
+- `npm run seed` - Seed database with sample sweets
+- `npm run clear` - Clear all sweets from database
+- `npm test` - Run tests
+- `npm test -- --coverage` - Run tests with coverage report
 
 ### Frontend
 - `npm run dev` - Start development server

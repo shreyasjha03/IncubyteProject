@@ -17,6 +17,7 @@ interface Sweet {
   category: string;
   price: number;
   quantity: number;
+  imageUrl?: string;
 }
 
 export default function DashboardPage() {

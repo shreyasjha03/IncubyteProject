@@ -9,7 +9,8 @@
     "start": "node dist/server.js",
     "test": "jest --coverage",
     "seed": "ts-node scripts/seed-sweets.ts",
-    "clear": "ts-node scripts/clear-sweets.ts"
+    "clear": "ts-node scripts/clear-sweets.ts",
+    "create-admin": "ts-node scripts/create-admin.ts"
   },
   "keywords": [],
   "author": "",

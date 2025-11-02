@@ -90,8 +90,8 @@ router.post(
 
       const { email, password } = req.body;
 
-      // Find user by email
-      const user = await User.findOne({ email });
+      // Find user by email (case-insensitive)
+      const user = await User.findOne({ email: email.toLowerCase().trim() });
       if (!user) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
