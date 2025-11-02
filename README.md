@@ -134,32 +134,37 @@ Sweet management interface with image upload (computer or URL).
 
 ![Admin Panel](docs/screenshots/admin-panel.png)
 
-#### 5. Order History
+#### 5. Admin Actions
+Admin functionality showcasing Edit, Restock, and Delete operations for sweets management.
+
+![Admin Actions](docs/screenshots/admin-actions.png)
+
+#### 6. Order History
 Past orders displayed in sliding panel with order details.
 
 ![Order History](docs/screenshots/order-history.png)
 
-#### 6. Order Panel
+#### 7. Order Panel
 Side panel showing order history with all past orders.
 
 ![Order Panel](docs/screenshots/order-panel.png)
 
-#### 7. Checkout Page
+#### 8. Checkout Page
 Order review page with customer information and order summary.
 
 ![Checkout Page](docs/screenshots/checkout-page.png)
 
-#### 8. Order Process Flow
+#### 9. Order Process Flow
 Complete order flow showing the purchase process.
 
 ![Order Process](docs/screenshots/order-process.png)
 
-#### 9. Order Placed
+#### 10. Order Placed
 Confirmation screen showing successful order placement.
 
 ![Order Placed](docs/screenshots/order-placed.png)
 
-#### 10. Order Confirmation
+#### 11. Order Confirmation
 Final order confirmation page with order details.
 
 ![Order Confirmation](docs/screenshots/order-confirmation.png)
