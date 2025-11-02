@@ -1,0 +1,21 @@
+# TDD Commit Message Template
+
+# RED: Write failing test
+test: Add test for [feature name]
+
+Co-authored-by: Cursor AI <auto@cursor.com>
+
+---
+
+# GREEN: Make test pass with minimal implementation
+feat: Implement [feature name] to pass tests
+
+Co-authored-by: Cursor AI <auto@cursor.com>
+
+---
+
+# REFACTOR: Improve code quality
+refactor: Improve [feature name] implementation
+
+Co-authored-by: Cursor AI <auto@cursor.com>
+
