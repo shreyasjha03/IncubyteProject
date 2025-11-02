@@ -12,6 +12,36 @@ A full-stack TDD kata project for managing a sweet shop inventory and sales. Bui
 - **Search & Filter**: Search sweets by name, category, or price range
 - **Responsive UI**: Modern, mobile-friendly interface built with Tailwind CSS
 
+
+## Deployment
+
+The project is fully deployed and accessible online:
+
+### Live URLs
+
+- **Frontend (Vercel)**: [https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app](https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app)
+- **Backend API (Railway)**: [https://backend-production-c6f9.up.railway.app](https://backend-production-c6f9.up.railway.app)
+- **Backend Health Check**: [https://backend-production-c6f9.up.railway.app/health](https://backend-production-c6f9.up.railway.app/health)
+
+### Deployment Platforms
+
+- **Frontend**: Deployed on [Vercel](https://vercel.com) - Next.js optimized hosting
+- **Backend**: Deployed on [Railway](https://railway.app) - Node.js server hosting
+- **Database**: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - Cloud database service
+
+### Access the Application
+
+1. **Visit the Frontend**: Open [https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app](https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app)
+2. **Register/Login**: Create an account or use existing credentials
+3. **Admin Access**: Use admin credentials to access admin panel and manage sweets
+
+### Admin Credentials
+
+For testing admin features, use:
+- **Email**: `shreyasjha16@gmail.com`
+- **Password**: `Raunak@955`
+- **Role**: `admin`
+
 ## Tech Stack
 
 ### Backend
@@ -109,37 +139,6 @@ npm run dev
 ```
 
 The frontend will be running on `http://localhost:3000`
-
-## Deployment
-
-The project is fully deployed and accessible online:
-
-### Live URLs
-
-- **Frontend (Vercel)**: [https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app](https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app)
-- **Backend API (Railway)**: [https://backend-production-c6f9.up.railway.app](https://backend-production-c6f9.up.railway.app)
-- **Backend Health Check**: [https://backend-production-c6f9.up.railway.app/health](https://backend-production-c6f9.up.railway.app/health)
-
-### Deployment Platforms
-
-- **Frontend**: Deployed on [Vercel](https://vercel.com) - Next.js optimized hosting
-- **Backend**: Deployed on [Railway](https://railway.app) - Node.js server hosting
-- **Database**: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - Cloud database service
-
-### Access the Application
-
-1. **Visit the Frontend**: Open [https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app](https://frontend-mneicbslm-shreyasjha03s-projects.vercel.app)
-2. **Register/Login**: Create an account or use existing credentials
-3. **Admin Access**: Use admin credentials to access admin panel and manage sweets
-
-### Admin Credentials
-
-For testing admin features, use:
-- **Email**: `shreyasjha16@gmail.com`
-- **Password**: `Raunak@955`
-- **Role**: `admin`
-
-> **Note**: These are demo credentials. Change the password in production.
 
 ## Screenshots
 
